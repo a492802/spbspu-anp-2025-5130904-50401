@@ -18,6 +18,10 @@ int main(int argc, char* argv[]
     	   std::cerr << "first parameter must be 1 or 2" << std::endl;
     	return 1;
 	}
-
+        std::ifstream inputFile(argv[2]);
+        if (!inputFile.is_open()) {
+	   std::cerr << "can't open file" << std::endl;
+	   return 2;
+	}
 return 0;
 }
