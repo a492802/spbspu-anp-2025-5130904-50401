@@ -36,5 +36,55 @@ int main(int argc, char* argv[]){
            inputFile.close();
            return 2;
         }
+	if (num == 1) {
+           int totalElements = rows * cols;
+           if (totalElements > 10000) {
+              std::cerr << "A LOT of elements, more than 10_000" << std::endl;
+              inputFile.close();
+              return 2;
+           }
+        }
+
+	int** matrix = nullptr;
+	if (num == 1) {
+	const int MAX_SIZE = 10000;
+    	if (rows * cols > MAX_SIZE) {
+           std::cerr << "Matrix exceeds fixed array size limit" << std::endl;
+           inputFile.close();
+           return 2;
+    	}
+    
+    	matrix = new int*[rows];
+    	for (int i = 0; i < rows; i++) {
+           matrix[i] = new int[cols];
+    	   }
+	} else {
+	   matrix = new int*[rows];
+           for (int i = 0; i < rows; i++) {
+              matrix[i] = new int[cols];
+           }
+        }
+	for (int i = 0; i < rows; i++) {
+           for (int j = 0; j < cols; j++) {
+              if (!(inputFile >> matrix[i][j])) {
+                 std::cerr << "сan't read element" << std::endl;
+                 for (int k = 0; k < rows; k++) {
+                    delete[] matrix[k];
+                 }
+                 delete[] matrix;
+                 inputFile.close();
+                 return 2;
+              }
+           }
+        }
+        inputFile.close();
+
+
+
+
+
+
+
+
 return 0;
 }
