@@ -3,7 +3,8 @@
 #include <cstdlib>
 #include <climits>
 
-int main(int argc, char* argv[]
+int main(int argc, char* argv[]){
+	
 	if (argc != 4) {
            if (argc < 4) {
               std::cerr << "not enough arguments" << std::endl;
@@ -23,5 +24,17 @@ int main(int argc, char* argv[]
 	   std::cerr << "can't open file" << std::endl;
 	   return 2;
 	}
+	
+	int rows, cols;
+	if (!(inputFile >> rows >> cols)) {
+	   std::cerr << "NOT numbers" << std::endl;
+	   inputFile.close();
+	   return 2;
+	}
+	if (rows <= 0 || cols <= 0) {
+	   std::cerr << "NOT real numbers" << std::endl;
+           inputFile.close();
+           return 2;
+        }
 return 0;
 }
